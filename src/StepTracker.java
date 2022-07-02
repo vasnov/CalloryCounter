@@ -42,10 +42,10 @@ public class StepTracker {
     }int stepSum(int month) { //считаем сумму всем шагов
         int stepsSum = 0;
         for (int i = 0; i < monthToData[month].days.length; i++) {
-            stepsSum = monthToData[month].days[i - 1] + monthToData[month].days[i];
+            stepsSum += monthToData[month].days[i];
 
-
-        }return stepsSum;
+        }System.out.println("Общее количество шагов за месяц" + stepsSum);
+        return stepsSum;
     }
     void maxSteps(int month) { //находим максимальное значение за месяц
         int maxSteps = 0;
@@ -57,7 +57,28 @@ public class StepTracker {
         }
     }void middleSteps(int stepSum){ //находим среднее арифметическое
         int middleSteps=stepSum/30;
-        System.out.println("Среднее количество шагов за месяц\"+middleSteps");
-    }
+        System.out.println("Среднее количество шагов за месяц"+middleSteps);
 
-}
+    }int stepsRow(int month, int goalOfDay){
+        int maxSeries =0;
+        int currentSeries =0;
+        for (int i=0; i<monthToData[month].days.length; i++){
+            if (monthToData[month].days[i]<=goalOfDay){
+                if(currentSeries>=maxSeries){
+                    maxSeries=currentSeries;
+                }currentSeries=0;
+                continue;
+            }currentSeries++;
+            }
+            System.out.println("Максимальная серия "+maxSeries+" дней.(^◔ᴥ◔^)");
+            return maxSeries;
+        }
+        int goalOfDay() {
+            System.out.println("Сколько шагов в день мы будем делать?");
+            int goalOfDay = scanner.nextInt();
+
+            System.out.println("Наша цель " + goalOfDay + " шагов в день. Мы справимся! (^=◕ᴥ◕=^)");
+            return goalOfDay;
+        }
+
+    }

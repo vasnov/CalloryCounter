@@ -8,6 +8,9 @@ public class Main {
         int userInput = scanner.nextInt();
         StepTracker stepTracker = new StepTracker();
         Converter converter= new Converter();
+        int goalOgDay=1;
+        int stepsSum=0;
+
 
         while (userInput != 0) {
             // обработка разных случаев
@@ -36,18 +39,15 @@ public class Main {
                 stepTracker.year();
                 int month = scanner.nextInt();
                 stepTracker.statOfMonth(month);
-
-                System.out.println("Общее количество шагов за месяц" + stepTracker.stepSum(month));
-                int stepsSum= stepTracker.stepSum(month);
-                stepTracker.middleSteps(month);
+                stepsSum=stepTracker.stepSum(month);
+                stepTracker.middleSteps(stepsSum);
                 converter.distance(month, stepsSum);
                 converter.calloryCount(month,stepsSum);
 
-            } else if (userInput==3) {
+                stepTracker.stepsRow(month, goalOgDay);
 
-                System.out.println("Сколько шагов в день мы будем делать?");
-                int goalOfDay=scanner.nextInt();
-                System.out.println("Наша цель "+goalOfDay+" шагов в день. Мы справимся! (^=◕ᴥ◕=^)");
+            } else if (userInput==3) {
+                goalOgDay=stepTracker.goalOfDay();
 
             }else {
                 System.out.println("Такой команды пока нет (×﹏×)");
